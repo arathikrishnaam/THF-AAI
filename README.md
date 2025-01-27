@@ -1,4 +1,4 @@
-# THE Autism Awareness Initiative
+# The Horse Education (THE) ! association - Autism Awareness Initiative
 
 A website dedicated to promoting understanding and support for individuals on the autism spectrum through equine therapy and educational resources.
 
