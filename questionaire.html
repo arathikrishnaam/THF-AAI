@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Awareness Comprehensive Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <header>
+        <div class="logo">
+            <img src="src\puzzle.png" alt="Puzzle Piece Logo">
+            <h1>Autism Awareness Initiative</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <style>
+        :root {
+            --primary-color: #0D47A1;
+            --secondary-color: #1565C0;
+            --accent-color: #2196F3;
+            --success-color: #4CAF50;
+            --warning-color: #FFC107;
+            --error-color: #F44336;
+            --background-light: #F5F9FF;
+            --background-white: #FFFFFF;
+            --text-dark: #1A1A2E;
+            --text-muted: #4B5563;
+            --gradient-primary: linear-gradient(135deg, #0D47A1, #1565C0);
+            --shadow-subtle: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px var(--shadow-subtle);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 65px;
+            height: 65px;
+            margin-right: 20px;
+            border-radius: 50%;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 4px 6px var(--shadow-subtle);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+
+        .quiz-container {
+            background-color: var(--background-white);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px var(--shadow-medium);
+            width: 100%;
+            max-width: 800px;
+            padding: 2.5rem;
+            margin-top: 25px;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 1rem;
+        }
+
+        .quiz-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+
+        .question {
+            background-color: var(--background-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-subtle);
+        }
+
+        .question h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .option:hover {
+            background-color: rgba(33, 150, 243, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        .option input {
+            margin-right: 1rem;
+            accent-color: var(--primary-color);
+        }
+
+        .option.selected {
+            background-color: rgba(33, 150, 243, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        #submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        #submit-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        #results {
+            background-color: var(--background-light);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .result-details {
+            background-color: var(--background-white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 8px 20px var(--shadow-subtle);
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .awareness-levels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .level {
+            flex: 1;
+            padding: 0.5rem;
+            margin: 0 0.25rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .level-low { background-color: var(--error-color); color: white; }
+        .level-medium { background-color: var(--warning-color); color: var(--text-dark); }
+        .level-high { background-color: var(--success-color); color: white; }
+
+        @media (max-width: 768px) {
+            .quiz-container {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .quiz-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>Autism Awareness Assessment</h1>
+        </div>
+
+        <form id="autism-quiz">
+            <div class="question">
+                <h3>1. Have you ever heard the term "autism"?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="1">
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="0">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>2. Do you know what autism is?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2" value="2">
+                        Yes, I know a lot about it
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="1">
+                        I have a basic idea
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="0">
+                        No, I'm not sure
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>3. Is autism curable?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3" value="0">
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="2">
+                        No
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="1">
+                        I don't know
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>4. Do you know someone with autism?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4" value="2">
+                        Yes, a family member
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="1">
+                        Yes, a friend or acquaintance
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="0">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>5. If you knew someone with autism, would you invite them to your birthday party or event?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5" value="2">
+                        Yes, absolutely
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="1">
+                        Maybe, depending on the situation
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="0">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>6. Do you believe people with autism can live independently and succeed in life?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6" value="2">
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="0">
+                        No
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="1">
+                        I'm not sure
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>7. What do you think is the best way to support someone with autism?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7" value="2">
+                        Be patient and understanding
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="0">
+                        Avoid interacting with them because it's uncomfortable
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="1">
+                        I don't know
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>8. Do you believe schools and workplaces are inclusive enough for people with autism?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8" value="1">
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="0">
+                        No
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="1">
+                        I'm not sure
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>9. Have you ever tried to learn more about autism (e.g., reading, attending events)?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q9" value="2">
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="0">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>10. Would you like to know more about how to support and interact with people on the autism spectrum?</h3>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q10" value="2">
+                        Yes
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="0">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn">Submit Assessment</button>
+        </form>
+
+        <div id="results" style="display: none;">
+            <div class="result-score" id="score-display"></div>
+            <div class="result-details">
+                <div class="result-message" id="result-message"></div>
+                <div class="awareness-levels">
+                    <div class="level level-low">Low Awareness</div>
+                    <div class="level level-medium">Medium Awareness</div>
+                    <div class="level level-high">High Awareness</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive selection
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const options = this.closest('.options').querySelectorAll('.option');
+                options.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                this.querySelector('input').checked = true;
+            });
+        });
+
+        document.getElementById('autism-quiz').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Calculate score
+            const questions = document.querySelectorAll('input[type="radio"]:checked');
+            
+            if (questions.length < 10) {
+                alert('Please answer all questions before submitting.');
+                return;
+            }
+
+            let score = 0;
+            questions.forEach(question => {
+                score += parseInt(question.value);
+            });
+
+            const maxScore = 20; // Total possible points
+            const percentageScore = Math.round((score / maxScore) * 100);
+
+            // Display results
+            const resultsContainer = document.getElementById('results');
+            const scoreDisplay = document.getElementById('score-display');
+            const resultMessage = document.getElementById('result-message');
+
+            resultsContainer.style.display = 'block';
+            scoreDisplay.textContent = `${percentageScore}%`;
+
+
+            // Provide context-based messaging
+            let message = '';
+            let backgroundColor = '';
+
+            if (percentageScore <= 40) {
+                message = "You have minimal awareness about autism. There's significant room for learning about neurodiversity and understanding different ways of perceiving the world. Consider exploring resources to expand your knowledge.";
+                backgroundColor = 'var(--error-color)';
+            } else if (percentageScore <= 70) {
+                message = "You have a basic understanding of autism. Continue learning and growing to become a more informed ally. Your curiosity and willingness to learn are important steps towards creating an inclusive environment.";
+                backgroundColor = 'var(--warning-color)';
+            } else {
+                message = "Excellent! You demonstrate a strong understanding of autism and neurodiversity. You're an advocate for inclusive awareness and seem committed to supporting individuals on the autism spectrum.";
+                backgroundColor = 'var(--success-color)';
+            }
+
+            resultMessage.textContent = message;
+            resultsContainer.style.backgroundColor = backgroundColor;
+            resultsContainer.style.color = percentageScore <= 40 ? 'white' : 'white';
+
+            // Scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html></antArtifact>

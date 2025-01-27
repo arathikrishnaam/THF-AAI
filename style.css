@@ -1,0 +1,424 @@
+:root {
+    --primary-color: #0D47A1;
+    --secondary-color: #1565C0;
+    --accent-color: #2196F3;
+    --background-light: #F5F9FF;
+    --background-white: #FFFFFF;
+    --text-dark: #1A1A2E;
+    --text-muted: #4B5563;
+    --gradient-primary: linear-gradient(135deg, #0D47A1, #1565C0);
+    --gradient-secondary: linear-gradient(45deg, #2196F3, #64B5F6);
+    --shadow-subtle: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    letter-spacing: 0.4px;
+}
+
+/* Header Styling */
+header {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px var(--shadow-subtle);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo img {
+    width: 65px;
+    height: 65px;
+    margin-right: 20px;
+    border-radius: 50%;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 4px 6px var(--shadow-subtle);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+nav ul li a:hover {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+    background: var(--gradient-secondary);
+    color: white;
+    text-align: center;
+    padding: 7rem 2rem 4rem;
+    margin-top: 80px;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+.hero-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px var(--shadow-subtle);
+}
+
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.video-wrapper {
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--shadow-medium);
+}
+
+.video-wrapper video {
+    width: 100%;
+    display: block;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.image-wrapper {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    box-shadow: 0 10px 30px var(--shadow-medium);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.quote-container {
+    background: var(--gradient-primary);
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.quote-container blockquote {
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.6;
+    font-style: italic;
+    position: relative;
+    padding: 0 3rem;
+}
+
+.quote-container blockquote::before,
+.quote-container blockquote::after {
+    content: '"';
+    font-size: 4rem;
+    position: absolute;
+    opacity: 0.3;
+}
+
+.quote-container blockquote::before {
+    left: -1rem;
+    top: -1rem;
+}
+
+.quote-container blockquote::after {
+    right: -1rem;
+    bottom: -2rem;
+}
+
+
+/* Section Styling */
+.section {
+    background-color: var(--background-white);
+    margin: 2.5rem 5%;
+    padding: 3.5rem;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-primary);
+}
+
+.section h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2.5rem;
+    position: relative;
+    font-size: 2.2rem;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+/* Grid Layouts */
+.content-grid,
+.myth-grid,
+.support-grid,
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+}
+
+.card,
+.myth-card,
+.support-card,
+.resource-card {
+    background: var(--background-light);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 5px solid var(--accent-color);
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px var(--shadow-subtle);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover,
+.myth-card:hover,
+.support-card:hover,
+.resource-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 35px var(--shadow-medium);
+}
+
+/* Questionnaire Layout */
+.questionnaire-container {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 2rem;
+    align-items: start;
+    margin: 2.5rem 5%;
+}
+
+.info-box {
+    padding: 2rem;
+    background: var(--background-light);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px var(--shadow-subtle);
+}
+
+.form-box {
+    padding: 2rem;
+    background: var(--background-white);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+#autism-questionnaire {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#autism-questionnaire .question {
+    padding: 1rem;
+    border: 1px solid var(--shadow-subtle);
+    border-radius: 8px;
+    background-color: var(--background-light);
+    box-shadow: 0 4px 10px var(--shadow-subtle);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+#autism-questionnaire .question:hover {
+    box-shadow: 0 6px 15px var(--shadow-medium);
+    transform: translateY(-3px);
+}
+
+#autism-questionnaire p {
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+}
+
+#autism-questionnaire label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#autism-questionnaire label:hover {
+    color: var(--accent-color);
+}
+
+#autism-questionnaire input[type="radio"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+#autism-questionnaire button {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+#autism-questionnaire button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: var(--gradient-primary);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem;
+    }
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .questionnaire-container {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid,
+    .myth-grid,
+    .support-grid,
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-container {
+        padding: 2rem;
+    }
+
+    .quote-container blockquote {
+        font-size: 1.4rem;
+        padding: 0 1rem;
+    }
+
+    .section {
+        margin: 1rem 2%;
+        padding: 1.5rem;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-container > * {
+    animation: fadeIn 0.6s ease-out forwards;
+}
